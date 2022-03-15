@@ -1,0 +1,8 @@
+// programme erreur : manque des espaces
+
+programme progun {
+	entier var ;
+	// commentaire sur une ligne
+	var := 1;
+    ecrire var;
+}

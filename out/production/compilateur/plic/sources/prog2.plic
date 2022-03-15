@@ -1,0 +1,11 @@
+// programme
+
+programme progun {
+	entier var ;
+	// commentaire
+	var := 1 ; // affectation
+    ecrire var ;
+    var := 2 ;
+	ecrire var ;
+	// fin
+}

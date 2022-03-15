@@ -1,0 +1,5 @@
+programme progun {
+	entier var ;
+	var := 1 ;
+	ecrire var ;
+}

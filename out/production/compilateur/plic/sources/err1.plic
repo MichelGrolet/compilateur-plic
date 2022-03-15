@@ -1,0 +1,9 @@
+programme prog1 { // nom du programme non valide (utilisation d'un entier)
+	entier var ;
+	// commentaire
+	var := 1 ; // affectation
+    ecrire var ;
+    var := 2 ;
+	ecrire var ;
+	// fin
+}
