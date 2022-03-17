@@ -4,6 +4,9 @@ import plic.exception.DoubleDeclaration;
 
 import java.util.HashMap;
 
+/**
+ * TDS : stocke les variables déclarées dans le programme
+ */
 public class TDS extends HashMap<Entree, Symbole> {
 
 	private static TDS instance;
@@ -22,13 +25,18 @@ public class TDS extends HashMap<Entree, Symbole> {
 	}
 
 	public void ajouter(Entree e, Symbole s) throws DoubleDeclaration {
-		System.out.println("Ajout de " + e.getIdf() + " : " + s.getType());
 		if (instance.containsKey(e)) throw new DoubleDeclaration(e.getIdf());
 		else {
 			s.setDepl(cptDepl);
 			this.cptDepl -= 4;
 			instance.put(e, s);
 		}
+		System.out.println("#### TDS : ajout de " + s.getType() + " (" + e.getIdf() + ')');
+		System.out.println("#### TDS : " + super.toString());
+	}
+
+	public Symbole identifier(Entree e) {
+		return this.get(e);
 	}
 
 	public int getCptDepl() {

@@ -14,4 +14,8 @@ public class Entree {
 	public void setIdf(String idf) {
 		this.idf = idf;
 	}
+
+	public String toString() {
+		return idf;
+	}
 }
