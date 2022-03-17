@@ -1,6 +1,8 @@
 programme progun {
 	entier var ;
-	entier i ;
-	var := 1 ;
+	entier vare ;
+	var := 150 ;
+	vare := 2 ;
 	ecrire var ;
+	ecrire vare ;
 }

@@ -24,6 +24,10 @@ public class Symbole {
 		this.deplacement = cptDepl;
 	}
 
+	public int getDepl() {
+		return deplacement;
+	}
+
 	@Override
 	public String toString() {
 		return type+" "+deplacement;

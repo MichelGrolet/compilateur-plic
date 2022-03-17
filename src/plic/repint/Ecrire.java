@@ -1,7 +1,12 @@
 package plic.repint;
 
 public class Ecrire extends Instruction {
-	private Expression expr;
+	private final Expression expr;
+
+	/**
+	 * Code mips pour aller à la ligne
+	 */
+	public final String sautdeligne = "\n# saut de ligne\n"+"li $v0, 4\n"+"la $a0, str\n"+"syscall\n";
 
 	public Ecrire(Expression expr) {
 		this.expr = expr;
@@ -14,6 +19,22 @@ public class Ecrire extends Instruction {
 
 	@Override
 	public void verifier() {
+		Entree e = new Entree(this.expr.toString());
+		Symbole s = TDS.getInstance().identifier(e);
+		if (s == null)
+			throw new RuntimeException("ecrire : l'identificateur " + this.expr.toString() + " n'existe pas");
+	}
 
+	@Override
+	public String toMips() {
+		String mips = "# Ecrire " + this.toString() + "\n";
+		Entree e = new Entree(this.expr.toString());
+		Symbole s = TDS.getInstance().identifier(e);
+		int adresse = s.getDepl()-4;
+		mips += "li $v0, 1\n";
+		mips += "lw $a0, " + adresse + "($s7)\n";
+		mips += "syscall\n";
+		mips += this.sautdeligne;
+		return mips;
 	}
 }

@@ -10,10 +10,19 @@ public class Bloc {
 
 	public void ajouterInstruction(Instruction i) {
 		this.instructions.add(i);
-		System.out.println("#### BLOC : ajout de l'instruction " + i.toString());
 	}
 
 	public void verifier() {
 		instructions.forEach(Instruction::verifier);
+	}
+
+	public String toMips() {
+		StringBuilder sb = new StringBuilder();
+		sb.append(".data\n");
+		sb.append("str: .asciiz \"\\n\"\n");
+		sb.append(".text\n");
+		sb.append("main:\n");
+		instructions.forEach(i -> sb.append(i.toMips()).append("\n"));
+		return sb.toString();
 	}
 }

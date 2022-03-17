@@ -11,7 +11,7 @@ public class Plic {
 		try {
 			new Plic(args[0]);
 		} catch (Exception e) {
-			System.out.println(e.getMessage());
+			System.out.println("ERREUR: " + e.getMessage());
 		}
 	}
 
@@ -20,5 +20,8 @@ public class Plic {
 		AnalyseurSyntaxique analyseurSyntaxique = new AnalyseurSyntaxique(file);
 		Bloc bloc = analyseurSyntaxique.analyse();
 		bloc.verifier();
+		// MIPS
+		String code = bloc.toMips();
+		System.out.println("\n # fichier compilé depuis PLIC\n # @author : michel grolet\n\n" + code + "#######################################");
 	}
 }

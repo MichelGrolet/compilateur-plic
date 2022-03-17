@@ -44,10 +44,8 @@ public class AnalyseurSyntaxique {
 	private void analyseBloc() throws ErreurSyntaxique, DoubleDeclaration {
 		this.analyseTerminal("{");
 		// Itérer sur analyseDeclaration tant qu’il y a des déclarations
-		while (this.uniteCourante.equals("entier")) {
-			System.out.println("declaration " + this.uniteCourante);
+		while (this.uniteCourante.equals("entier"))
 			this.analyseDeclaration();
-		}
 
 		// bloc : liste des instructions
 		this.bloc = new Bloc();
@@ -63,7 +61,7 @@ public class AnalyseurSyntaxique {
 		if (!this.estIdf()) throw new ErreurSyntaxique("idf attendu dans une déclaration");
 		else {
 			TDS tds = TDS.getInstance();
-			tds.ajouter(new Entree("entier"), new Symbole(this.uniteCourante));
+			tds.ajouter(new Entree(this.uniteCourante), new Symbole("entier"));
 			this.uniteCourante = this.analex.next();
 			if (!this.uniteCourante.equals(";")) throw new ErreurSyntaxique("; attendu");
 			this.uniteCourante = this.analex.next();
@@ -71,7 +69,6 @@ public class AnalyseurSyntaxique {
 	}
 
 	private void analyseInstruction() throws ErreurSyntaxique, DoubleDeclaration {
-		System.out.println("ANALYSE INSTRUCTION " + this.uniteCourante);
 		if (this.uniteCourante.equals("ecrire"))
 			this.analyseEcrire();
 		else this.analyseAffectation();

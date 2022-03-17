@@ -19,7 +19,7 @@ public class Affectation extends Instruction {
 
 	@Override
 	public String toString() {
-		return idf + " = " + expr;
+		return idf + " := " + expr;
 	}
 
 	/**
@@ -29,8 +29,21 @@ public class Affectation extends Instruction {
 	public void verifier() {
 		Entree e = new Entree(this.idf.toString());
 		Symbole s = TDS.getInstance().identifier(e);
-		if (s == null) {
-			throw new RuntimeException("Erreur : l'identificateur " + this.idf + " n'existe pas");
-		}
+		if (s == null)
+			throw new RuntimeException("affectation : l'identificateur " + this.idf.toString() + " n'existe pas");
+	}
+
+	@Override
+	public String toMips() {
+		String mips = "# Affectation " + this.toString() + "\n";
+		// réservation de l'espace mémoire
+		mips += "add $sp, $sp, -4\n";
+		// assignation de la valeur de l'expression à $v0
+		mips += "li $v0, " + this.expr.toString() + "\n";
+		// récupération de l'adresse de la variable dans TDS
+		Symbole s = TDS.getInstance().identifier(new Entree(this.idf.toString()));
+		int empl = s.getDepl()-4;
+		mips += "sw $v0, "+ empl +"($s7)\n";
+		return mips;
 	}
 }

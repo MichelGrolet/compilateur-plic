@@ -6,6 +6,8 @@ import java.util.HashMap;
 
 /**
  * TDS : stocke les variables déclarées dans le programme
+ * Entrée : nom de la variable
+ * Symbole : type de la variable et déplacement
  */
 public class TDS extends HashMap<Entree, Symbole> {
 
@@ -31,12 +33,12 @@ public class TDS extends HashMap<Entree, Symbole> {
 			this.cptDepl -= 4;
 			instance.put(e, s);
 		}
-		System.out.println("#### TDS : ajout de " + s.getType() + " (" + e.getIdf() + ')');
-		System.out.println("#### TDS : " + super.toString());
 	}
 
 	public Symbole identifier(Entree e) {
-		return this.get(e);
+		for (Entree key : this.keySet())
+			if (key.getIdf().equals(e.getIdf())) return this.get(key);
+		return null;
 	}
 
 	public int getCptDepl() {
