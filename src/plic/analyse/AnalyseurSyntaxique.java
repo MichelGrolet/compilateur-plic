@@ -91,18 +91,21 @@ public class AnalyseurSyntaxique {
 		if (!this.uniteCourante.equals(":="))
 			throw new ErreurSyntaxique("idf attendu dans une affectation");
 		this.uniteCourante = this.analex.next();
-		this.bloc.ajouterInstruction(new Affectation(new Idf(nom), new Idf(this.uniteCourante)));
+		System.out.println("xxxxxxxxxxxxx"+this.uniteCourante);
+		Instruction i;
+		if (this.estEntier()) {
+			// Affectation d’un entier
+			i = new Affectation(new Idf(nom), new Idf(this.uniteCourante));
+		} else if (this.estIdf()) {
+			// Affectation d’une variable
+			i = new A
+		}
+		this.bloc.ajouterInstruction(i);
 		this.uniteCourante = this.analex.next();
 		this.uniteCourante = this.analex.next();
 	}
 
-	private void analyseExpression() throws ErreurSyntaxique {
-		this.uniteCourante = this.analex.next();
-		if (!this.uniteCourante.matches("[0-9]+"))
-			throw new ErreurSyntaxique("entier attendu");
-		this.uniteCourante = this.analex.next();
-		if (!this.uniteCourante.equals(";"))
-			throw new ErreurSyntaxique("; attendu");
-		this.uniteCourante = this.analex.next();
+	private boolean estEntier() {
+		return this.uniteCourante.matches("[0-9]+");
 	}
 }
