@@ -1,6 +1,7 @@
 programme progun {
 	entier var ;
 	entier vare ;
+	tableau [ 2 ] tab ;
 	var := 150 ;
 	ecrire var ;
 	ecrire vare ;

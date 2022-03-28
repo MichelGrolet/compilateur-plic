@@ -10,6 +10,7 @@ public class Plic {
 	public static void main(String[] args) {
 		try {
 			new Plic(args[0]);
+
 		} catch (Exception e) {
 			System.out.println("ERREUR: " + e.getMessage());
 		}
@@ -22,6 +23,6 @@ public class Plic {
 		bloc.verifier();
 		// MIPS
 		String code = bloc.toMips();
-		System.out.println("\n # fichier compilé depuis PLIC\n # @author : michel grolet\n\n" + code + "#######################################");
+		System.out.println(code);
 	}
 }

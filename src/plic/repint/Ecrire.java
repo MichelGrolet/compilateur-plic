@@ -19,15 +19,16 @@ public class Ecrire extends Instruction {
 
 	@Override
 	public void verifier() {
+		System.out.println("Verification de l'instruction ecrire : " + this);
 		Entree e = new Entree(this.expr.toString());
 		Symbole s = TDS.getInstance().identifier(e);
 		if (s == null)
-			throw new RuntimeException("ecrire : l'identificateur " + this.expr.toString() + " n'existe pas");
+			throw new RuntimeException("ecrire : l'identificateur " + this.expr + " n'existe pas");
 	}
 
 	@Override
 	public String toMips() {
-		String mips = "# Ecrire " + this.toString() + "\n";
+		String mips = "# Ecrire " + this + "\n";
 		Entree e = new Entree(this.expr.toString());
 		Symbole s = TDS.getInstance().identifier(e);
 		int adresse = s.getDepl()-4;

@@ -25,6 +25,7 @@ public class AnalyseurLexical {
 				word = sc.next();
 			}
 		}
+		System.out.println(" | " + word);
 		return word;
 	}
 }

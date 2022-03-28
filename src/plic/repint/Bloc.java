@@ -9,6 +9,7 @@ public class Bloc {
 	private final ArrayList<Instruction> instructions = new ArrayList<>();
 
 	public void ajouterInstruction(Instruction i) {
+		System.out.println("instruction ajoutée : " + i.toString());
 		this.instructions.add(i);
 	}
 

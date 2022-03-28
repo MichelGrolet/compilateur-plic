@@ -1,24 +1,14 @@
 package plic.repint;
 
-public class Symbole {
-	private String type;
-	private int deplacement;
+/**
+ * Symbole :
+ * - soit une variable
+ * - soit un tableau
+ */
+public abstract class Symbole {
+	protected int deplacement;
 
-	public Symbole(String type) {
-		this.type = type;
-	}
-
-	/*public int deplacement() {
-
-	}*/
-
-	public String getType() {
-		return type;
-	}
-
-	public void setType(String type) {
-		this.type = type;
-	}
+	public abstract String getType();
 
 	public void setDepl(int cptDepl) {
 		this.deplacement = cptDepl;
@@ -29,7 +19,5 @@ public class Symbole {
 	}
 
 	@Override
-	public String toString() {
-		return type+" "+deplacement;
-	}
+	public abstract String toString();
 }

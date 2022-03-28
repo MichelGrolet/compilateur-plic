@@ -3,23 +3,27 @@ package plic.repint;
 public class Affectation extends Instruction {
 
 	/**
-	 * idf : nom de la variable à affecter
+	 * acces : nom de (la variable / emplacement de tableau) à affecter
 	 */
-	private final Idf idf;
+	private final Acces acces;
 
 	/**
 	 * expr : valeur de l'affectation
 	 */
 	private final Expression expr;
 
-	public Affectation(Idf idf, Expression expr) {
+	public Affectation(Acces a, Expression expr) {
+		this.acces = a;
 		this.expr = expr;
-		this.idf = idf;
+	}
+
+	public Affectation(Acces a) {
+		this(a, null);
 	}
 
 	@Override
 	public String toString() {
-		return idf + " := " + expr;
+		return acces.toString() + " := " + expr;
 	}
 
 	/**
@@ -27,10 +31,10 @@ public class Affectation extends Instruction {
 	 */
 	@Override
 	public void verifier() {
-		Entree e = new Entree(this.idf.toString());
+		Entree e = new Entree(this.acces.getIdf().toString());
 		Symbole s = TDS.getInstance().identifier(e);
 		if (s == null)
-			throw new RuntimeException("affectation : l'identificateur " + this.idf.toString() + " n'existe pas");
+			throw new RuntimeException("affectation : l'identificateur " + this.acces.getIdf().toString() + " n'existe pas");
 	}
 
 	@Override
@@ -41,7 +45,8 @@ public class Affectation extends Instruction {
 		// assignation de la valeur de l'expression à $v0
 		mips += "li $v0, " + this.expr.toString() + "\n";
 		// récupération de l'adresse de la variable dans TDS
-		Symbole s = TDS.getInstance().identifier(new Entree(this.idf.toString()));
+		Entree e = new Entree(this.acces.getIdf().toString());
+		Symbole s = TDS.getInstance().identifier(e);
 		int empl = s.getDepl()-4;
 		mips += "sw $v0, "+ empl +"($s7)\n";
 		return mips;

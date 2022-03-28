@@ -11,4 +11,9 @@ public class Nombre extends Expression {
 	public String toString() {
 		return Integer.toString(val);
 	}
+
+	@Override
+	public String toMips() {
+		return null;
+	}
 }
