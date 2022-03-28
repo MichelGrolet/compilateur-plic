@@ -1,10 +1,11 @@
 package plic.repint;
 
 public class SymboleTableau extends Symbole {
-	private int taille;
+	private final int taille;
 
 	public SymboleTableau(int taille) {
 		this.taille = taille;
+		this.setDepl(taille);
 	}
 
 	public void setDepl(int cptDepl) {
@@ -24,6 +25,6 @@ public class SymboleTableau extends Symbole {
 	}
 
 	public String toString() {
-		return getType()+" "+super.deplacement;
+		return getType() + " " + super.deplacement;
 	}
 }

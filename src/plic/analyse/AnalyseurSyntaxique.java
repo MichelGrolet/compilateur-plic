@@ -88,8 +88,10 @@ public class AnalyseurSyntaxique {
 		Instruction i;
 		if (this.uniteCourante.equals("ecrire"))
 			i = this.analyseEcrire();
-		else if (this.estIdf()) i = this.analyseAffectation();
-		else throw new ErreurSyntaxique("instruction attendue");
+		else if (this.estIdf())
+			i = this.analyseAffectation();
+		else
+			throw new ErreurSyntaxique("instruction attendue");
 		return i;
 	}
 
@@ -128,6 +130,8 @@ public class AnalyseurSyntaxique {
 			int taille = Integer.parseInt(this.uniteCourante);
 			a = new AccesTableau(nom, new Nombre(taille));
 			analyseTerminal("]");
+		} else {
+			a = new Idf(nom);
 		}
 
 		return a;

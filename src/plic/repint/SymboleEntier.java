@@ -9,6 +9,6 @@ public class SymboleEntier extends Symbole {
 	}
 
 	public String toString() {
-		return getType()+" "+super.deplacement;
+		return getType() + " " + super.deplacement;
 	}
 }

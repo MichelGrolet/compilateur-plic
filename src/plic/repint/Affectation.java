@@ -31,24 +31,24 @@ public class Affectation extends Instruction {
 	 */
 	@Override
 	public void verifier() {
-		Entree e = new Entree(this.acces.getIdf().toString());
+		Entree e = new Entree(this.acces.toString());
 		Symbole s = TDS.getInstance().identifier(e);
 		if (s == null)
-			throw new RuntimeException("affectation : l'identificateur " + this.acces.getIdf().toString() + " n'existe pas");
+			throw new RuntimeException("affectation : l'identificateur " + this.acces.toMips() + " n'existe pas");
 	}
 
 	@Override
 	public String toMips() {
-		String mips = "# Affectation " + this.toString() + "\n";
+		String mips = "# Affectation " + this + "\n";
 		// réservation de l'espace mémoire
 		mips += "add $sp, $sp, -4\n";
 		// assignation de la valeur de l'expression à $v0
-		mips += "li $v0, " + this.expr.toString() + "\n";
+		mips += this.expr.toMips();
 		// récupération de l'adresse de la variable dans TDS
-		Entree e = new Entree(this.acces.getIdf().toString());
+		Entree e = new Entree(this.acces.toMips());
 		Symbole s = TDS.getInstance().identifier(e);
-		int empl = s.getDepl()-4;
-		mips += "sw $v0, "+ empl +"($s7)\n";
+		int empl = s.getDepl() - 4;
+		mips += "sw $v0, " + empl + "($s7)\n";
 		return mips;
 	}
 }

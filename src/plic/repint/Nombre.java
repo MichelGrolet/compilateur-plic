@@ -13,7 +13,12 @@ public class Nombre extends Expression {
 	}
 
 	@Override
+	public String getType() {
+		return "entier";
+	}
+
+	@Override
 	public String toMips() {
-		return null;
+		return "li $v0, " + this.val + "\n";
 	}
 }

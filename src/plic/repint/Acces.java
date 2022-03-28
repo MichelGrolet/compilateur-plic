@@ -6,15 +6,11 @@ package plic.repint;
  * - soit le nom d'un tableau suivi d'un emplacement : tab[2]
  */
 public abstract class Acces extends Expression {
+	public abstract String getType();
 
 	public abstract void verifier();
 
-	public String toMips() {
-		return "";
-	}
+	public abstract String toMips();
 
-	@Override
-	public String toString() {
-		return idf.toString();
-	}
+	public abstract int getAdresse();
 }

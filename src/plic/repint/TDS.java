@@ -13,7 +13,7 @@ public class TDS extends HashMap<Entree, Symbole> {
 
 	private static TDS instance;
 
-	// cptDepl : compteur de déplacement
+	// CptDepl : compteur de déplacement
 	private int cptDepl;
 
 	private TDS() {
@@ -21,8 +21,7 @@ public class TDS extends HashMap<Entree, Symbole> {
 	}
 
 	public static TDS getInstance() {
-		if (instance == null)
-			instance = new TDS();
+		if (instance == null) instance = new TDS();
 		return instance;
 	}
 
