@@ -16,8 +16,19 @@ public class AccesTableau extends Acces {
 		if (s == null) throw new RuntimeException("ecrire : l'identificateur " + this.nom + " n'existe pas");
 	}
 
-	@Override
-	public String toMips() {
+	/**
+	 * ToMips récupérant l'adresse
+	 * @return
+	 */
+	public String toMipsAdresse() {
+		return "";
+	}
+
+	/**
+	 * ToMips récupérant la valeur
+	 * @return
+	 */
+	public String toMipsValeur() {
 		return "";
 	}
 

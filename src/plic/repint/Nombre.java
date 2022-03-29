@@ -13,6 +13,9 @@ public class Nombre extends Expression {
 	}
 
 	@Override
+	public void verifier() {}
+
+	@Override
 	public String getType() {
 		return "entier";
 	}

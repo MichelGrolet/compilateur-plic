@@ -27,10 +27,10 @@ public class Affectation extends Instruction {
 	 */
 	@Override
 	public void verifier() {
-		Entree e = new Entree(this.acces.toString());
-		Symbole s = TDS.getInstance().identifier(e);
-		if (s == null)
-			throw new RuntimeException("affectation : l'identificateur " + this.acces + " n'existe pas");
+		acces.verifier();
+		expr.verifier();
+		// il faut avoir des entiers à gauche et à droite (pas de tableau mais tab[i] ou alors directement un entier)
+
 	}
 
 	@Override
