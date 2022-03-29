@@ -17,10 +17,6 @@ public class Affectation extends Instruction {
 		this.expr = expr;
 	}
 
-	public Affectation(Acces a) {
-		this(a, null);
-	}
-
 	@Override
 	public String toString() {
 		return acces.toString() + " := " + expr;
@@ -34,19 +30,21 @@ public class Affectation extends Instruction {
 		Entree e = new Entree(this.acces.toString());
 		Symbole s = TDS.getInstance().identifier(e);
 		if (s == null)
-			throw new RuntimeException("affectation : l'identificateur " + this.acces.toMips() + " n'existe pas");
+			throw new RuntimeException("affectation : l'identificateur " + this.acces + " n'existe pas");
 	}
 
 	@Override
-	public String toMips() {
+	public String toMips() throws RuntimeException {
 		String mips = "# Affectation " + this + "\n";
 		// réservation de l'espace mémoire
 		mips += "add $sp, $sp, -4\n";
 		// assignation de la valeur de l'expression à $v0
 		mips += this.expr.toMips();
 		// récupération de l'adresse de la variable dans TDS
-		Entree e = new Entree(this.acces.toMips());
+		this.verifier();
+		Entree e = new Entree(this.acces.toString());
 		Symbole s = TDS.getInstance().identifier(e);
+		System.out.println(s);
 		int empl = s.getDepl() - 4;
 		mips += "sw $v0, " + empl + "($s7)\n";
 		return mips;

@@ -11,7 +11,7 @@ public class Plic {
 		try {
 			new Plic(args[0]);
 
-		} catch (Exception e) {
+		} catch (DoubleDeclaration | ErreurSyntaxique e) {
 			System.out.println("ERREUR: " + e.getMessage());
 		}
 	}

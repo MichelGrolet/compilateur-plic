@@ -27,7 +27,7 @@ public class TDS extends HashMap<Entree, Symbole> {
 
 	public void ajouter(Entree e, Symbole s) throws DoubleDeclaration {
 		System.out.println("ajout de " + e.getIdf() + " de type " + s.getType());
-		if (instance.containsKey(e)) throw new DoubleDeclaration(e.getIdf());
+		if (instance.containsKey(e)) throw new DoubleDeclaration("double déclaration "+e.getIdf());
 		else {
 			s.setDepl(cptDepl);
 			this.cptDepl -= 4;
